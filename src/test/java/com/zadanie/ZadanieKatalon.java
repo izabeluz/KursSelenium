@@ -25,13 +25,32 @@ public class ZadanieKatalon {
     @Test
     public void katal1onAmazonAWSTest(){
         // znajdz pole imie i wpisz imie
+        String firstNameLabel = driver.findElement(By.xpath("//*[@id=\"infoForm\"]/div[1]/label")).getText();
+        String firstName ="Kamil";
+        System.out.println(firstNameLabel + firstName);
         WebElement firstNameInputField = driver.findElement(By.id("first-name"));
+        if(firstNameInputField.isEnabled()){
+            firstNameInputField.clear();
+            firstNameInputField.sendKeys(firstName);
+        } else{
+            Assert.fail("Pole firstName jest nieaktywne");
+        }
         firstNameInputField.clear();
-        firstNameInputField.sendKeys("Karol");
+        firstNameInputField.sendKeys(firstName);
+
         // znajdz pole nazwisko i wpisz nazwisko
         WebElement lastNameInputField = driver.findElement(By.id("last-name"));
+        if(lastNameInputField.isEnabled()){
+            lastNameInputField.clear();
+            lastNameInputField.sendKeys("Kowalski");
+        }
+        else{
+            Assert.fail("Pole nazwisko jest nieaktywne");
+        }
         lastNameInputField.clear();
-        lastNameInputField.sendKeys("Nazwisko");
+        lastNameInputField.sendKeys("Kowalski");
+
+
         // wybierz plec mezczyzna
         driver
                 .findElement(By.xpath("//*[@id=\"infoForm\"]/div[3]/div/div/label[1]/input"))
